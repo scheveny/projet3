@@ -247,7 +247,7 @@ footer nav ul {
 
 
 .login_page-body {
-	height: 1024px;
+	max-height: 1024px;
 }
 
 .forgotten-password-link {
@@ -259,4 +259,11 @@ footer nav ul {
 	margin-top: 355px;
 	display: flex;
 	justify-content: flex-end;
+}
+
+#errorMessage {
+	display: none;
+	color: red;
+	border: red 2px solid;
+	margin-top: 50px;
 }
