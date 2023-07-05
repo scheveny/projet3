@@ -8,7 +8,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="/FrontEnd/assets/style.css">
 	<script src="script.js"></script>
 </head>
 <body>
@@ -16,17 +16,17 @@
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			<li><a href="#ancre-projets">projets</a></li>
+			<li><a href="#ancre-contact">contact</a></li>
+			<li><a href="http://127.0.0.1:5500/FrontEnd/login_page/login_page.html">login</a></li>
+			<li><img src="/FrontEnd/assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
 </header>
 <main>
 	<section id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img src="/FrontEnd/assets/images/sophie-bluel.png" alt="">
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -36,7 +36,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<h2 id="ancre-projets">Mes Projets</h2>
 		<div class="category-buttons">
 			<button data-category="all">Tous</button>
 			<button data-category="1">Objets</button>
@@ -47,7 +47,7 @@
 		</div>
 	</section>
 	<section id="contact">
-		<h2>Contact</h2>
+		<h2 id="ancre-contact">Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
 		<form action="#" method="post">
 			<label for="name">Nom</label>
