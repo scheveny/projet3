@@ -51,38 +51,17 @@ a {
 
 /** end reset css**/
 
+/***** General ******/
+
 body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
-}
-
-header {
-	display: flex;
-	justify-content: space-between;
-	max-width: 1140px;
-	margin: auto;
-	padding-top: 50px;
-}
-
-main {
-	max-width: 935px;
-	margin: auto;
-}
-
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
 }
 
 h1 > span {
 	font-family: 'Work Sans';
 	font-size: 10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2 {
@@ -106,6 +85,32 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+}
+
+/******** header **********/
+
+.header-title {
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: #B1663C
+}
+
+.header-nav {
+	display: flex;
+	justify-content: space-between;
+	max-width: 1140px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+/****************************/
+
+main {
+	max-width: 935px;
+	margin: auto;
 }
 
 #introduction {
@@ -160,15 +165,28 @@ li:hover {
 	font-size: 16px;
 	height: 37px;
 	min-width: 100px;
-	border:#1D6154 1px solid;
+	border: #1D6154 1px solid;
 	border-radius: 60px;
 	padding: 0 10px;
-}
-
-.cat-btns-active {
+  }
+  
+  .cat-btns-inactive {
+	background-color: white;
+	color: #1D6154;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	height: 37px;
+	min-width: 100px;
+	border: #1D6154 1px solid;
+	border-radius: 60px;
+	padding: 0 10px;
+  }
+  
+  .cat-btns-active {
 	background-color: #1D6154;
 	color: white;
-}
+  }
 
 /**** Galerie *****/
 
@@ -267,3 +285,45 @@ footer nav ul {
 	border: red 2px solid;
 	margin-top: 50px;
 }
+
+/******* Modales *********/
+
+/****** Bannière header *******/
+
+.modal-banner {
+	display: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	color: white;
+	gap: 10px;
+	height: 59px;
+  }
+
+  .banner-icon {
+	width: 19px;
+	height: 19px;
+	background-image: url(/FrontEnd/assets/icons/pen-icon.png);
+	background-size: cover;
+  }
+
+  .banner-title {
+	font-family: 'Work Sans';
+	font-size: 16px;
+	font-weight: 400;
+	color: white;
+  }
+
+  .publish-button {
+	background-color: white;
+	color: black;
+	border: none;
+	border-radius: 60px;
+	padding: 10px 20px;
+	margin-left: 10px;
+	cursor: pointer;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+  }

@@ -1,3 +1,5 @@
+
+
 let dataProjects = [];
 
 async function fetchProjects() {
@@ -9,14 +11,6 @@ async function fetchProjects() {
   } catch (error) {
     console.error('Une erreur s\'est produite :', error);
     return [];
-  }
-}
-
-function filterProjects(category) {
-  if (category === 'all') {
-    return dataProjects;
-  } else {
-    return dataProjects.filter(project => project.category.id === parseInt(category));
   }
 }
 
@@ -40,14 +34,22 @@ function showProjects(projects) {
   }
 }
 
+function filterProjects(category) {
+  if (category === 'all') {
+    return dataProjects;
+  } else {
+    return dataProjects.filter(project => project.category.id === parseInt(category));
+  }
+}
 
+document.addEventListener('DOMContentLoaded', displayProjects);
 async function displayProjects() {
   let categoryButtons = document.querySelectorAll('.category-buttons button');
 
   // Gérer les clics sur les boutons de catégorie
   for (let i = 0; i < categoryButtons.length; i++) {
     let button = categoryButtons[i];
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
       let selectedCategory = button.dataset.categoryId;
       let filteredProjects = filterProjects(selectedCategory);
       showProjects(filteredProjects);
@@ -56,9 +58,7 @@ async function displayProjects() {
 
   // Fetcher les projets une seule fois au chargement initial
   await fetchProjects();
-  
+
   // Afficher tous les projets au chargement initial
   showProjects(dataProjects);
 }
-
-document.addEventListener('DOMContentLoaded', displayProjects);
