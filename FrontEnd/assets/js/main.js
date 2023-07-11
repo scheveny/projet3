@@ -1,5 +1,3 @@
-
-
 let dataProjects = [];
 
 async function fetchProjects() {
@@ -13,6 +11,7 @@ async function fetchProjects() {
     return [];
   }
 }
+
 
 function showProjects(projects) {
   let gallery = document.querySelector('.gallery');

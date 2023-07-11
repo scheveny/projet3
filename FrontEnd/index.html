@@ -9,13 +9,14 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="/FrontEnd/assets/style.css">
-	<script src="/FrontEnd/assets/js/buttonAppearance.js"></script>
-	<script src="/FrontEnd/assets/js/main.js"></script>
-	
+	<script src="/FrontEnd/assets/js/buttonAppearance.js" defer></script>
+	<script src="/FrontEnd/assets/js/main.js" defer></script>
+	<script src="/FrontEnd/assets/js/fetch.js" defer></script>
+	<script src="/FrontEnd/assets/js/modal.js" defer></script>
 </head>
 <body>
 <header>
-	<div class="modal-banner">
+	<div class="modal-banner" style="display: none;">
 		<div class="banner-icon"></div>
 		<h2 class="banner-title">Mode édition</h2>
 		<button class="publish-button">publier les changements</button>
@@ -45,7 +46,10 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2 id="ancre-projets">Mes Projets</h2>
+		<div class="portfolio-title">
+			<h2 id="ancre-projets">Mes Projets</h2>
+			<button class="edit-btn"><div class="edit-btn-icon"></div>modifier</button>
+		</div>
 		<div class="category-buttons">
 			<button class="cat-btns-inactive" data-category-id="all">Tous</button>
 			<button class="cat-btns-inactive" data-category-id="1">Objets</button>

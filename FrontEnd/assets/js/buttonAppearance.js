@@ -1,5 +1,5 @@
  // Fonction pour gérer le clic sur un bouton
-    export function handleClick(event, categoryButtons) {
+    function handleClick(event, categoryButtons) {
       // Supprimer la classe 'cat-btns-active' de tous les boutons de catégorie
       for (let i = 0; i < categoryButtons.length; i++) {
         categoryButtons[i].classList.remove('cat-btns-active');
