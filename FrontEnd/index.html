@@ -8,55 +8,78 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="/FrontEnd/assets/style.css">
-	<script src="/FrontEnd/assets/js/fetch.js"></script>
-	<script src="/FrontEnd/assets/js/main.js"></script>
-	
+	<link rel="stylesheet" href="assets/style.css">
+	<script src="assets/js/fetch.js" defer></script>
+	<script src="assets/js/main.js" defer></script>
+	<script src="assets/js/buttonAppearance.js"></script>
+	<script src="assets/js/modal/app.js"></script>
 </head>
 <body>
-	<aside id="modal1" class="modal-banner" style="display: none;">
-		<h2 class="banner-title"><div class="banner-icon"></div>Mode édition</h2>
-		<button class="publish-button">publier les changements</button>
-	</aside>
-	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none;">
-			<div class="modal-wdw1">
-				<button class="close-btn" class="js-modal-close"><img src="/FrontEnd/assets/icons/xmark.png" alt=""></button>
-				<h2 class="mwdw1-title">Galerie Photo</h2>
+	<aside  style="display: none;">
+		<aside class="modal-banner">
+			<h2 class="banner-title"><div class="banner-icon"></div>Mode édition</h2>
+			<button class="publish-button">publier les changements</button>
+		</aside>
+		<aside class="modal-wdws" aria-hidden="true" role="dialog">
+			<div class="modal-wdw1" style="display: none;">
+				<button class="close-btn" class="js-modal-close"><img src="assets/icons/xmark.png" alt="bouton fermer la fenêtre"></button>
+				<h2 class="mwdw-title">Galerie Photo</h2>
 				<div class="project-editor"></div>
 				<button class="pjct-add-btn">Ajouter une photo</button>
 				<button class="gallery-delete-btn">Supprimer la galerie</button>
 			</div>
+			<div class="modal-wdw2" aria-hidden="true" role="dialog">
+				<div class="modal-nav-btns">
+					<button class="back-btn"><img src="assets/icons/arrow-left.png" alt="bouton retour à la fenêtre précédente"></button>
+					<button class="close-btn"><img src="assets/icons/xmark.png" alt="bouton fermer la fenêtre"></button>
+				</div>
+				<div class="modal-pjct-add-form">
+					<h2 class="mwdw-title">Ajout photo</h2>
+					<form action="/upload" method="post">
+						<input type="file" id="image" name="image" accept="image/*">					
+						<label for="Titre">Titre</label>
+						<input type="text" id="titre" name="titre">		
+						<label for="Catégorie">Catégorie</label>
+						<select id="categorie" name="categorie">
+					  		<option value="Objets">Objets</option>
+					  		<option value="Appartements">Appartements</option>
+					  		<option value="Hôtels & restaurants">Hôtels & restaurants</option>
+						</select><br><br>
+						<input type="submit" value="Valider">
+				  </form>
+				</div>
+			</div>
+		</aside>
 	</aside>
-	<script src="/FrontEnd/assets/js/modal/app.js"></script>
 <header>
 	<h1 class="header-title">Sophie Bluel<span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li><a href="#ancre-projets">projets</a></li>
 			<li><a href="#ancre-contact">contact</a></li>
-			<li><a href="/FrontEnd/login_page.html">login</a></li>
-			<li><img src="/FrontEnd/assets/icons/instagram.png" alt="Instagram"></li>
+			<li><a href="login_page.html">login</a></li>
+			<li><img src="assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
 </header>
 <main>
 	<section id="introduction">
 		<figure>
-			<img src="/FrontEnd/assets/images/sophie-bluel.png" alt="Photo de l'architecte entourée de végétations">
+			<img src="assets/images/sophie-bluel.png" alt="Photo de l'architecte entourée de végétations">
 		</figure>
 		<article>
-			<a href="#modal1" class="edit-link" class="js-modal"><div class="edit-link-icon"></div>modifier</a>
+			<a href="#modal1" class="edit-link js-modal"><span class="edit-link-icon"></span>modifier</a>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
 	</section>
-	<a href="#modal1" class="edit-link" class="js-modal"><div class="edit-link-icon"></div>modifier</a>
+	<a href="#modal1" class="edit-link js-modal"><span class="edit-link-icon"></span>modifier</a>
 	<section id="portfolio">
 		<div class="portfolio-title">
 			<h2 id="ancre-projets">Mes Projets</h2>
-			<a href="#modal1" class="edit-link" class="js-modal"><div class="edit-link-icon"></div>modifier</a>
+			<a href="#modal1" class="edit-link js-modal"><span class="edit-link-icon"></span>modifier</a>
 		</div>
 		<div class="category-buttons">
 			<button class="cat-btns-inactive" data-category-id="all">Tous</button>
@@ -64,7 +87,7 @@
 			<button class="cat-btns-inactive" data-category-id="2">Appartements</button>
 			<button class="cat-btns-inactive" data-category-id="3">Hôtels & restaurants</button>
 		</div>
-		<script src="/FrontEnd/assets/js/buttonAppearance.js"></script>
+		
 		<div class="gallery">
 		</div>
 	</section>
