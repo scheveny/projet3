@@ -1,4 +1,4 @@
-export async function fetchProjects() {
+async function fetchProjects() {
     try {
       let response = await fetch('http://localhost:5678/api/works');
       let data = await response.json();

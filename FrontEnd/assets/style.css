@@ -89,6 +89,14 @@ li:hover {
 
 /******** header **********/
 
+header {
+	display: flex;
+	justify-content: space-between;
+	max-width: 1140px;
+	margin: auto;
+	margin-top: 50px;
+}
+
 .header-title {
 	display: flex;
 	flex-direction: column;
@@ -96,14 +104,6 @@ li:hover {
 	font-size: 22px;
 	font-weight: 800;
 	color: #B1663C
-}
-
-.header-nav {
-	display: flex;
-	justify-content: space-between;
-	max-width: 1140px;
-	margin: auto;
-	margin-top: 50px;
 }
 
 /****************************/
@@ -116,7 +116,7 @@ main {
 #introduction {
 	display: flex;
 	justify-content: space-between;
-	margin: 139px 0;
+	margin: 139px 0 15px 0;
 }
 #introduction figure {
 	flex: 1;
@@ -135,6 +135,7 @@ main {
 
 #introduction h2 {
 	margin-bottom: 1em;
+	margin-top: 20px;
 }
 
 #introduction p {
@@ -142,6 +143,10 @@ main {
 }
 
 /****** Portfolio ******/
+
+#portfolio {
+	margin-top: 105px;
+}
 
 .portfolio-title {
 	display: flex;
@@ -155,19 +160,17 @@ main {
 	text-align: center;
 }
 
-.edit-btn-icon {
+.edit-link-icon {
 	width: 19px;
 	height: 19px;
 	background-image: url(/FrontEnd/assets/icons/black-pen-icon.png);
 	background-size: cover;
 }
 
-.edit-btn {
+.edit-link {
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	border: none;
-	background-color: white;
 	font-family: 'Work Sans';
 	font-size: 14px;
 	font-weight: 400;
@@ -311,9 +314,21 @@ footer nav ul {
 	margin-top: 50px;
 }
 
-/******* Modales *********/
+/******* Modal window *********/
 
-/****** Bannière header *******/
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/****** Modal banner *******/
 
 .modal-banner {
 	display: flex;
@@ -321,8 +336,8 @@ footer nav ul {
 	justify-content: center;
 	background-color: black;
 	color: white;
-	gap: 10px;
 	height: 59px;
+	gap: 20px;
   }
 
   .banner-icon {
@@ -333,6 +348,8 @@ footer nav ul {
   }
 
   .banner-title {
+	display: flex;
+	gap: 10px;
 	font-family: 'Work Sans';
 	font-size: 16px;
 	font-weight: 400;
@@ -345,9 +362,69 @@ footer nav ul {
 	border: none;
 	border-radius: 60px;
 	padding: 10px 20px;
-	margin-left: 10px;
 	cursor: pointer;
 	font-family: 'Work Sans';
 	font-weight: 500;
 	font-size: 14px;
+  }
+
+  /***** Modal Gallery Editor *****/
+
+  .modal-wdw1 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	width: 630px;
+	height: 731px;
+	background-color: white;
+	border-radius: 10px;
+  }
+
+  .close-btn {
+	margin-left: auto;
+	margin-right: 30px;
+	margin-top: 26px;
+	width: 24px;
+	height: 24px;
+	border: none;
+	background-color: white;
+  }
+
+  .mwdw1-title {
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 26px;
+	color: black;
+	margin-top: 10px;
+  }
+
+  .project-editor {
+	height: 386px;
+	width: 420px;
+	padding-bottom: 47px;
+	border-bottom: solid 1px #b3b3b3;
+	margin-top: 46px;
+  }
+
+  .pjct-add-btn {
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 14px;
+	color: white;
+	background-color: #1D6154;
+	text-align: center;
+	border-radius: 60px;
+	width: 237px;
+	height: 36px;
+	margin-top: 37px;
+  }
+
+  .gallery-delete-btn {
+	border: none;
+	background-color: white;
+	color: #d65353;
+	font-size: 14px;
+	font-family: 'Work Sans';
+	margin-top: 23px;
   }
