@@ -9,19 +9,17 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="assets/style.css">
-	<script src="assets/js/fetch.js" defer></script>
-	<script src="assets/js/main.js" defer></script>
-	<script src="assets/js/buttonAppearance.js"></script>
 	<script src="assets/js/modal/app.js"></script>
+	<script type="module" src="homepage.js"></script>
 </head>
 <body>
-	<aside  style="display: none;">
+	<aside>
 		<aside class="modal-banner">
 			<h2 class="banner-title"><div class="banner-icon"></div>Mode édition</h2>
 			<button class="publish-button">publier les changements</button>
 		</aside>
 		<aside class="modal-wdws" aria-hidden="true" role="dialog">
-			<div class="modal-wdw1" style="display: none;">
+			<div class="modal-wdw1">
 				<button class="close-btn" class="js-modal-close"><img src="assets/icons/xmark.png" alt="bouton fermer la fenêtre"></button>
 				<h2 class="mwdw-title">Galerie Photo</h2>
 				<div class="project-editor"></div>
@@ -36,7 +34,7 @@
 				<div class="modal-pjct-add-form">
 					<h2 class="mwdw-title">Ajout photo</h2>
 					<form action="/upload" method="post">
-						<input type="file" id="image" name="image" accept="image/*">					
+						<input type="file" id="file-input" name="image" accept="image/*">
 						<label for="Titre">Titre</label>
 						<input type="text" id="titre" name="titre">		
 						<label for="Catégorie">Catégorie</label>
@@ -82,7 +80,7 @@
 			<a href="#modal1" class="edit-link js-modal"><span class="edit-link-icon"></span>modifier</a>
 		</div>
 		<div class="category-buttons">
-			<button class="cat-btns-inactive" data-category-id="all">Tous</button>
+			<button class="cat-btns-active" data-category-id="all">Tous</button>
 			<button class="cat-btns-inactive" data-category-id="1">Objets</button>
 			<button class="cat-btns-inactive" data-category-id="2">Appartements</button>
 			<button class="cat-btns-inactive" data-category-id="3">Hôtels & restaurants</button>
