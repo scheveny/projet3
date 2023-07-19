@@ -1,4 +1,4 @@
-import { fetchProjects } from './assets/js/fetch.js'
+import { fetchProjects } from './fetch.js'
 
 
   let dataProjects = await fetchProjects();
@@ -35,12 +35,25 @@ import { fetchProjects } from './assets/js/fetch.js'
   }
   
   let categoryButtons = document.querySelectorAll('.category-buttons button');
-  categoryButtons.forEach(function(button){
-    button.addEventListener('click', (event) => {
-      let selectedCategory = button.dataset.categoryId;
-      let filteredProjects = filterProjects(selectedCategory);
-      showProjects(filteredProjects);
-      event.target.classList.add('cat-btns-active');
+
+categoryButtons.forEach(function(button) {
+  button.addEventListener('click', function(event) {
+    // Récupérer la catégorie sélectionnée
+    let selectedCategory = button.dataset.categoryId;
+
+    // Filtrer les projets en fonction de la catégorie sélectionnée
+    let filteredProjects = filterProjects(selectedCategory);
+
+    // Afficher les projets filtrés
+    showProjects(filteredProjects);
+
+    // Ajouter la classe 'cat-btns-active' au bouton cliqué
+    categoryButtons.forEach(function(btn) {
+      if (btn === button) {
+        btn.classList.add('cat-btns-active');
+      } else {
+        btn.classList.remove('cat-btns-active');
+      }
     });
-  })
-  
+  });
+});

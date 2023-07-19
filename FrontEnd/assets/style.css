@@ -245,7 +245,7 @@ main {
 	margin-bottom: 20px;
 }
 
-#contact form, .login-form form, .modal-pjct-add-form form {
+#contact form, .login-form form {
 	text-align: left;
 	margin-top: 30px;
 	display: flex;
@@ -459,11 +459,39 @@ footer nav ul {
 	margin: auto;
 }
 
-input[type="file"] {
+.modal-pjct-add-form form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+label[for="file-input"] {
 	height: 169px;
 	box-shadow: none;
 	background: #E8F1F6;
 	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+label img {
+	width: 58px;
+	height: 58px;
+	margin-bottom: 15px;
+}
+
+#add-photo-btn {
+	background-color: #cbd6dc;
+	color: #306685;
+	border-radius: 50px;
+	padding: 10px 33px;
+}
+
+#input-comments {
+	font-size: 10px;
+	margin-top: 7px;
 }
 
 .modal-pjct-add-form select {

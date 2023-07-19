@@ -10,23 +10,22 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="assets/style.css">
 	<script src="assets/js/modal/app.js"></script>
-	<script type="module" src="homepage.js"></script>
+	<script type="module" src="assets/js/homepage.js"></script>
 </head>
 <body>
-	<aside>
-		<aside class="modal-banner">
+		<aside class="modal-banner" style="display: none;">
 			<h2 class="banner-title"><div class="banner-icon"></div>Mode édition</h2>
 			<button class="publish-button">publier les changements</button>
 		</aside>
-		<aside class="modal-wdws" aria-hidden="true" role="dialog">
-			<div class="modal-wdw1">
+		<aside class="modal-wdws" style="display: none;">
+			<div class="modal-wdw1" style="display: none;">
 				<button class="close-btn" class="js-modal-close"><img src="assets/icons/xmark.png" alt="bouton fermer la fenêtre"></button>
 				<h2 class="mwdw-title">Galerie Photo</h2>
 				<div class="project-editor"></div>
 				<button class="pjct-add-btn">Ajouter une photo</button>
 				<button class="gallery-delete-btn">Supprimer la galerie</button>
 			</div>
-			<div class="modal-wdw2" aria-hidden="true" role="dialog">
+			<div class="modal-wdw2" style="display: none;">
 				<div class="modal-nav-btns">
 					<button class="back-btn"><img src="assets/icons/arrow-left.png" alt="bouton retour à la fenêtre précédente"></button>
 					<button class="close-btn"><img src="assets/icons/xmark.png" alt="bouton fermer la fenêtre"></button>
@@ -34,7 +33,12 @@
 				<div class="modal-pjct-add-form">
 					<h2 class="mwdw-title">Ajout photo</h2>
 					<form action="/upload" method="post">
-						<input type="file" id="file-input" name="image" accept="image/*">
+						<label for="file-input">
+							<img src="assets/icons/picture-svgrepo-com 1.png" alt="">
+							<span id="add-photo-btn">+ Ajouter photo</span>
+							<span id="input-comments">jpg, png : 4mo max</span>
+						</label>
+						<input type="file" id="file-input" name="image" accept="image/*" style="display: none;">
 						<label for="Titre">Titre</label>
 						<input type="text" id="titre" name="titre">		
 						<label for="Catégorie">Catégorie</label>
@@ -48,7 +52,6 @@
 				</div>
 			</div>
 		</aside>
-	</aside>
 <header>
 	<h1 class="header-title">Sophie Bluel<span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -80,7 +83,7 @@
 			<a href="#modal1" class="edit-link js-modal"><span class="edit-link-icon"></span>modifier</a>
 		</div>
 		<div class="category-buttons">
-			<button class="cat-btns-active" data-category-id="all">Tous</button>
+			<button class="cat-btns-active cat-btns-inactive" data-category-id="all">Tous</button>
 			<button class="cat-btns-inactive" data-category-id="1">Objets</button>
 			<button class="cat-btns-inactive" data-category-id="2">Appartements</button>
 			<button class="cat-btns-inactive" data-category-id="3">Hôtels & restaurants</button>
