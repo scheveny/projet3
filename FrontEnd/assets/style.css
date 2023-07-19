@@ -399,12 +399,20 @@ footer nav ul {
 	background-color: white;
 }
 
-.project-editor {
+.modal-gallery {
 	height: 386px;
 	width: 420px;
 	padding-bottom: 47px;
 	border-bottom: solid 1px #b3b3b3;
 	margin-top: 46px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 9px;
+}
+
+.modal-gallery img {
+	width: 76px;
+	height: 102px;
 }
 
 .pjct-add-btn {

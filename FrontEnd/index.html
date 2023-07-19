@@ -9,19 +9,20 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="assets/style.css">
-	<script src="assets/js/modal/app.js"></script>
+	<script type="module" src="assets/js/modal/app.js"></script>
 	<script type="module" src="assets/js/homepage.js"></script>
+	<script type="module" src="assets/js/modal/projects-import.js"></script>
 </head>
 <body>
-		<aside class="modal-banner" style="display: none;">
+		<aside class="modal-banner js-modal" style="display: none;">
 			<h2 class="banner-title"><div class="banner-icon"></div>Mode édition</h2>
 			<button class="publish-button">publier les changements</button>
 		</aside>
-		<aside class="modal-wdws" style="display: none;">
-			<div class="modal-wdw1" style="display: none;">
-				<button class="close-btn" class="js-modal-close"><img src="assets/icons/xmark.png" alt="bouton fermer la fenêtre"></button>
+		<aside class="modal-wdws js-modal">
+			<div class="modal-wdw1 js-modal">
+				<button class="close-btn js-modal-close"><img src="assets/icons/xmark.png" alt="bouton fermer la fenêtre"></button>
 				<h2 class="mwdw-title">Galerie Photo</h2>
-				<div class="project-editor"></div>
+				<div class="modal-gallery"></div>
 				<button class="pjct-add-btn">Ajouter une photo</button>
 				<button class="gallery-delete-btn">Supprimer la galerie</button>
 			</div>
