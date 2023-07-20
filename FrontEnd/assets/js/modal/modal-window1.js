@@ -3,9 +3,6 @@ import { fetchProjects } from '../fetch.js';
 
 let dataProjects = await fetchProjects();
 
-// Afficher tous les projets au chargement initial
-showProjects(dataProjects);
-
 function showProjects(dataProjects) {
   let gallery = document.querySelector('.modal-gallery');
   gallery.innerHTML = '';
@@ -14,7 +11,7 @@ function showProjects(dataProjects) {
     let project = dataProjects[i];
 
     let galleryProject = document.createElement('figure');
-    let imageContainer = document.createElement('div'); // Conteneur pour l'image et l'icône de suppression
+    let imageContainer = document.createElement('div');
     let imageProject = document.createElement('img');
     let titleProject = document.createElement('figcaption');
     let deleteIcon = document.createElement('img'); 
@@ -26,17 +23,42 @@ function showProjects(dataProjects) {
     gallery.appendChild(galleryProject);
     galleryProject.appendChild(imageContainer);
     imageContainer.appendChild(imageProject);
-    imageContainer.appendChild(deleteIcon); // Ajouter l'icône de suppression dans le conteneur avec l'image
+    imageContainer.appendChild(deleteIcon);
     galleryProject.appendChild(titleProject);
 
-    // Appliquer les styles pour superposer l'icône en haut à droite
     imageContainer.style.position = 'relative';
     deleteIcon.style.position = 'absolute';
     deleteIcon.style.top = '5px';
     deleteIcon.style.right = '5px';
     deleteIcon.style.width = '17px';
     deleteIcon.style.height = '17px';
+
+    deleteIcon.addEventListener('click', () => {
+      deleteProject(project.id);
+      fetchProjects().then(updatedProjects => showProjects(updatedProjects));
+    });
   }
 }
 
 showProjects(dataProjects);
+
+// Pathway between modal gallery delete projects and modal window add projects
+
+let btn = document.querySelector('.pjct-add-btn');
+
+  btn.addEventListener('click', () => {
+    let modal1 = document.querySelector('.modal-wdw1');
+    let modal2 = document.querySelector('.modal-wdw2');
+
+    modal1.style.display = 'none';
+    modal2.style.display = 'block';
+  });
+
+  // Delete all projects button
+
+  let deleteBtn = document.querySelector('.gallery-delete-btn');
+
+  deleteBtn.addEventListener('click', () => {
+    let projectList = document.querySelector('.modal-gallery figure');
+    projectList.innerHTML = '';
+  });

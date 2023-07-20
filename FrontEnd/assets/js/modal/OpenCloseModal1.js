@@ -1,6 +1,6 @@
 let modal = null
 
-const openModal = function (e) {
+let openModal = function (e) {
     e.preventDefault()
     const target = document.querySelector(e.target.getAttribute('href'))
     target.style.display = null
@@ -10,7 +10,7 @@ const openModal = function (e) {
     modal.querySelector('js-modal-stop').addEventListener('click', stopPropagation)
 }
 
-const closeModal = function (e) {
+let closeModal = function (e) {
     if (modal === null) return
     e.preventDefault()
     modal.style.display = "none"
@@ -20,7 +20,7 @@ const closeModal = function (e) {
     modal = null
 }
 
-const stopPropagation = function (e) {
+let stopPropagation = function (e) {
     e.stopPropagation()
 }
 
