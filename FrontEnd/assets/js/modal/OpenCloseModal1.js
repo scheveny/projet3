@@ -1,8 +1,8 @@
-let modal = null
+/* let modal = null
 
 let openModal = function (e) {
     e.preventDefault()
-    const target = document.querySelector(e.target.getAttribute('href'))
+    let target = document.querySelector()
     target.style.display = null
     modal = target
     modal.addEventListener('click', closeModal)
@@ -32,4 +32,18 @@ window.addEventListener('keydown', function (e) {
     if (e.key === "Escape" || e.key === "Esc") {
         closeModal(e)
     }
+}) */
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    let editProjectLink = document.querySelector('#edit-project-modal');
+    let editProjectModal = document.querySelector('#project-modal');
+    console.log(editProjectLink);
+    function OpenModal(event) {
+        event.preventDefault();
+        editProjectModal.style.display = 'flex';
+    }
+    
+    editProjectLink.addEventListener("click", (event) => {
+        OpenModal(event);
+      });
 })

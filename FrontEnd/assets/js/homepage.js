@@ -51,6 +51,7 @@ categoryButtons.forEach(function(button) {
     categoryButtons.forEach(function(btn) {
       if (btn === button) {
         btn.classList.add('cat-btns-active');
+        console.log('filtres');
       } else {
         btn.classList.remove('cat-btns-active');
       }

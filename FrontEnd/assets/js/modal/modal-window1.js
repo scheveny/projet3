@@ -1,4 +1,3 @@
-// Afficher tous les projets au chargement initial
 import { fetchProjects } from '../fetch.js';
 
 let dataProjects = await fetchProjects();
@@ -38,6 +37,11 @@ function showProjects(dataProjects) {
       fetchProjects().then(updatedProjects => showProjects(updatedProjects));
     });
   }
+}
+
+function deleteProject(projectId) {
+  console.log(projectId)
+  //utiliser fetch adresse de supp voir swagger(penser au try catch)
 }
 
 showProjects(dataProjects);
