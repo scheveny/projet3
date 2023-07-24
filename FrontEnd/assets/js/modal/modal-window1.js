@@ -39,9 +39,29 @@ function showProjects(dataProjects) {
   }
 }
 
-function deleteProject(projectId) {
-  console.log(projectId)
-  //utiliser fetch adresse de supp voir swagger(penser au try catch)
+async function deleteProject(projectId) {
+
+  const authToken = sessionStorage.getItem('authToken');
+
+  try {
+    const response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${authToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.error('Erreur dans la suppression du projet:', response);
+      throw new Error('Réponse réseau erronée');
+    }
+
+    // Handle the success response here if needed
+    console.log('Le projet a été supprimé avec succès');
+  } catch (error) {
+    // Handle any errors that occurred during the fetch request
+    console.error('Erreur dans la suppression du projet:', error);
+  }
 }
 
 showProjects(dataProjects);
@@ -50,19 +70,19 @@ showProjects(dataProjects);
 
 let btn = document.querySelector('.pjct-add-btn');
 
-  btn.addEventListener('click', () => {
-    let modal1 = document.querySelector('.modal-wdw1');
-    let modal2 = document.querySelector('.modal-wdw2');
+btn.addEventListener('click', () => {
+  let modal1 = document.querySelector('.modal-wdw1');
+  let modal2 = document.querySelector('.modal-wdw2');
 
-    modal1.style.display = 'none';
-    modal2.style.display = 'block';
-  });
+  modal1.style.display = 'none';
+  modal2.style.display = 'block';
+});
 
-  // Delete all projects button
+// Delete all projects button
 
-  let deleteBtn = document.querySelector('.gallery-delete-btn');
+let deleteBtn = document.querySelector('.gallery-delete-btn');
 
-  deleteBtn.addEventListener('click', () => {
-    let projectList = document.querySelector('.modal-gallery figure');
-    projectList.innerHTML = '';
-  });
+deleteBtn.addEventListener('click', () => {
+  let projectList = document.querySelector('.modal-gallery figure');
+  projectList.innerHTML = '';
+});

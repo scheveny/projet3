@@ -1,6 +1,6 @@
-let btn = document.querySelector('.back-btn');
+let backBtn = document.querySelector('.back-btn');
 
-  btn.addEventListener('click', () => {
+  backBtn.addEventListener('click', () => {
     let modal1 = document.querySelector('.modal-wdw1');
     let modal2 = document.querySelector('.modal-wdw2');
 
