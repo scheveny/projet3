@@ -26,7 +26,7 @@ loginForm.addEventListener('submit', async function(event) {
 
       if (response.ok) {
         // Redirection vers la page d'accueil si la connexion est confirmée
-        window.location.href = 'http://127.0.0.1:5500/FrontEnd/index.html';
+        window.location.href = 'http://127.0.0.1:5500/FrontEnd/homepage_edit.html';
       } else {
         // Affichage du message d'erreur si les informations de connexion ne sont pas correctes
         let errorMessage = document.getElementById('errorMessage');
