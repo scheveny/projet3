@@ -34,17 +34,17 @@
 			</div>
 			<div class="modal-pjct-add-form">
 				<h2 class="mwdw-title">Ajout photo</h2>
-				<form action="/upload" method="post">
+				<form action="/upload" method="post" id="upload-form">
 					<label for="file-input">
 						<img src="assets/icons/picture-svgrepo-com 1.png" alt="">
 						<span id="add-photo-btn">+ Ajouter photo</span>
 						<span id="input-comments">jpg, png : 4mo max</span>
 					</label>
-					<input type="file" id="file-input" name="image" accept="image/*" style="display: none;">
+					<input type="file" id="file-input" name="imageURl" accept="image/*" style="display: none;">
 					<label for="Titre">Titre</label>
-					<input type="text" id="titre" name="titre">		
+					<input type="text" id="title" name="title">		
 					<label for="Catégorie">Catégorie</label>
-					<select id="categorie" name="categorie">
+					<select id="categoryId" name="category">
 						<option value="Objets">Objets</option>
 						<option value="Appartements">Appartements</option>
 						<option value="Hôtels & restaurants">Hôtels & restaurants</option>

@@ -33,25 +33,31 @@ function showProjects(dataProjects) {
     deleteIcon.style.height = '17px';
 
     // Delete a project by id button
-
-    deleteIcon.addEventListener('click', () => {
-      deleteProject(project.id);
-      fetchProjects().then(updatedProjects => showProjects(updatedProjects));
-    });
-
-    // Delete all gallery projects button
-
-    const galleryDeleteBtn = document.querySelector('.gallery-delete-btn');
-    galleryDeleteBtn.addEventListener('click', async () => {
-     await deleteAllProject('.modal-gallery figure');
+    deleteIcon.addEventListener('click', async () => {
+      try {
+        await deleteProject(project.id);
+        const updatedProjects = await fetchProjects(); // Récupère les projets mis à jour après la suppression
+        showProjects(updatedProjects);
+      } catch (error) {
+        console.error('Erreur dans la suppression du projet individuel :', error);
+      }
     });
   }
+
+  // Delete all gallery projects button
+  const galleryDeleteBtn = document.querySelector('.gallery-delete-btn');
+  galleryDeleteBtn.addEventListener('click', async () => {
+    try {
+      await deleteAllProject();
+      showProjects([]); // show empty gallery after delete
+    } catch (error) {
+      console.error('Une erreur est survenue lors de la suppression des projets :', error);
+    }
+  });
 }
 
 async function deleteProject(projectId) {
-
   const authToken = sessionStorage.getItem('authToken');
-
   try {
     let response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
       method: 'DELETE',
@@ -61,51 +67,49 @@ async function deleteProject(projectId) {
     });
 
     if (!response.ok) {
-      console.error('Erreur dans la suppression du projet:', response);
+      console.error('Erreur dans la suppression du projet individuel:', response);
       throw new Error('Réponse réseau erronée');
     }
 
+    console.log('Projet supprimé avec succès.');
+
   } catch (error) {
-    // Handle any errors that occurred during the fetch request
-    console.error('Erreur dans la suppression du projet:', error);
-  }};
+    // Gérer les erreurs éventuelles lors de la suppression du projet individuel
+    console.error('Erreur dans la suppression du projet individuel:', error);
+    throw error; // Répéter l'erreur pour que l'appelant (l'écouteur d'événements) puisse également la gérer.
+  }
+};
 
-async function deleteAllProject () {
-
+async function deleteAllProject() {
   const authToken = sessionStorage.getItem('authToken');
-
   try {
-    const gallery = document.querySelector('.modal-gallery');
-    const elementsToDelete = gallery.querySelectorAll(`.modal-gallery figure`);
+    const allProjects = await fetchProjects(); // Supposons que vous ayez une fonction fetchProjects() pour récupérer tous les projets.
 
-    for (const element of elementsToDelete) {
-      const response = await fetch(`http://localhost:5678/api/works/${element.dataset.projectId}`, {
+    // Supprimer chaque projet individuellement en utilisant son ID
+    const deleteRequests = allProjects.map((project) => {
+      return fetch(`http://localhost:5678/api/works/${project.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${authToken}`,
         },
       });
+    });
 
-      if (!response.ok) {
-        console.error('Erreur lors de la suppression des projets');
-      } else {
-        console.log('Tous les projets ont été supprimés avec succès');
-      }
-    }
+    // Attendre que toutes les requêtes de suppression soient terminées
+    await Promise.all(deleteRequests);
 
-    // If needed, handle the success response here
+    console.log('Tous les projets ont été supprimés avec succès.');
+
   } catch (error) {
-    console.error('Erreur lors de la suppression des projets:', error);
+    console.error('Une erreur est survenue lors de la suppression des projets :', error);
+    throw error; // Répéter l'erreur pour que l'appelant (l'écouteur d'événements) puisse également la gérer.
   }
 }
 
 showProjects(dataProjects);
 
 
-
-
-
-// Pathway between modal gallery delete projects and modal window add projects
+// Pathway between modal wdw1 and wdw2
 
 let btn = document.querySelector('.pjct-add-btn');
 
