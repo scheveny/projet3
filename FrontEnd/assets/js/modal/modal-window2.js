@@ -10,45 +10,46 @@ let backBtn = document.querySelector('.back-btn');
 
   // Upload form
 
-  document.getElementById("upload-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+let uploadForm = document.getElementById('upload-form');
+const authToken = sessionStorage.getItem('authToken');
 
-    // Récupérer les valeurs du formulaire
-    let title = document.getElementById("title").value;
-    let categoryId = document.getElementById("categoryId").value;
-    let imageInput = document.getElementById("file-input");
-    let imageFile = imageInput.files[0];
+uploadForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-    // Vérifier si le titre a été renseigné
-    if (!title) {
-      alert("Veuillez renseigner un titre !");
-      return;
-    }
+  // Récupérez le fichier sélectionné par l'utilisateur
+  const imageFileInput = document.getElementById('file-input');
+  const imageUrl = imageFileInput.files[0]; // Le fichier sélectionné est le premier élément du tableau 'files'
 
-    // Vérifier si une image a été sélectionnée
-    if (!imageFile) {
-      alert("Veuillez sélectionner une image !");
-      return;
-    }
+  // Récupérez les autres données du formulaire si nécessaire
+  const title = document.getElementById('title').value;
+  const categoryId = document.getElementById('categoryId').value;
 
-    // Créer un objet FormData pour envoyer les données du formulaire
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("categoryId", categoryId);
-    formData.append("imageUrl", imageFile);
+  // Créez un objet FormData pour envoyer les données au serveur
+  let formData = new FormData();
+  formData.append('imageURl', imageUrl);
+  formData.append('title', title);
+  formData.append('categoryId', categoryId);
 
-    fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-      alert("Le formulaire a été envoyé avec succès ! Réponse de l'API : " + JSON.stringify(data));
-
-      // Réinitialiser le formulaire après l'ajout du projet
-      document.getElementById("upload-form").reset();
-    })
-    .catch(error => {
-      console.error("Erreur lors de l'envoi de la requête :", error);
+  try {
+    // Envoyez les données au serveur en utilisant 'fetch'
+   console.log('before fetch');
+    let response = await fetch('http://localhost:5678/api/works', {
+      method: 'POST',
+      body: formData, // Utilisez le FormData comme corps de la requête
+      headers: {
+        'Authorization': `Bearer ${authToken}`,
+      },
     });
-  })
+    console.log(response);
+    if (!response.ok) {
+      throw new Error('Erreur lors de l\'envoi des données.');
+    }
+
+    let data = response.json(); // Supposons que le serveur renvoie une réponse JSON
+    console.log('Réponse du serveur :', data);
+  } catch (error) {
+    // Gérez les erreurs éventuelles de la requête
+    console.error('Erreur lors de l\'envoi des données :', error);
+  }
+});
+
