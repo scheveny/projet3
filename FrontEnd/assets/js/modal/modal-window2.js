@@ -8,6 +8,10 @@ let backBtn = document.querySelector('.back-btn');
     modal2.style.display = 'none';
   });
 
+  // Showing img after selecting it in file-input
+
+
+
   // Upload form
 
 let uploadForm = document.getElementById('upload-form');
@@ -17,18 +21,24 @@ uploadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   // Récupérez le fichier sélectionné par l'utilisateur
-  const imageFileInput = document.getElementById('file-input');
-  const imageUrl = imageFileInput.files[0]; // Le fichier sélectionné est le premier élément du tableau 'files'
+  let imageFileInput = document.getElementById('file-input');
+  let imageUrl = imageFileInput.files[0]; // Le fichier sélectionné est le premier élément du tableau 'files'
 
   // Récupérez les autres données du formulaire si nécessaire
-  const title = document.getElementById('title').value;
-  const categoryId = document.getElementById('categoryId').value;
+  let title = document.getElementById('title').value;
+  let categoryId = document.getElementById('categoryId').options[document.getElementById('categoryId').selectedIndex].getAttribute('data-category-id');
+
+  // Validate the form data
+  if (!imageUrl || !title) {
+    alert('Veuillez remplir tous les champs du formulaire.');
+    return; // Stop the form submission if any field is missing
+  }
 
   // Créez un objet FormData pour envoyer les données au serveur
   let formData = new FormData();
-  formData.append('imageURl', imageUrl);
+  formData.append('image', imageUrl);
   formData.append('title', title);
-  formData.append('categoryId', categoryId);
+  formData.append('category', categoryId);
 
   try {
     // Envoyez les données au serveur en utilisant 'fetch'

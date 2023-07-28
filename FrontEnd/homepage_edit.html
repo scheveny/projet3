@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="assets/style.css">
-	<script type="module" src="assets/js/homepage.js"></script>
+	<script type="module" src="assets/js/homepage.js" defer></script>
 	<script src="assets/js/modal/OpenCloseModal.js"></script>
 	<script type="module" src="assets/js/modal/modal-window1.js"></script>
 	<script type="module" src="assets/js/modal/modal-window2.js"></script>
@@ -35,7 +35,8 @@
 			<div class="modal-pjct-add-form">
 				<h2 class="mwdw-title">Ajout photo</h2>
 				<form action="#" method="post" id="upload-form">
-					<label for="file-input">
+					<label for="file-input" onclick="handleFileSelect()">
+						<img src="" alt="" id="uploaded-image">
 						<img src="assets/icons/picture-svgrepo-com 1.png" alt="">
 						<span id="add-photo-btn">+ Ajouter photo</span>
 						<span id="input-comments">jpg, png : 4mo max</span>
@@ -45,12 +46,33 @@
 					<input type="text" id="title" name="title">		
 					<label for="Catégorie">Catégorie</label>
 					<select id="categoryId" name="category">
-						<option value="Objets">Objets</option>
-						<option value="Appartements">Appartements</option>
-						<option value="Hôtels & restaurants">Hôtels & restaurants</option>
+						<option value="Objets" data-category-id="1">Objets</option>
+						<option value="Appartements" data-category-id="2">Appartements</option>
+						<option value="Hôtels & restaurants" data-category-id="3">Hôtels & restaurants</option>
 					</select><br><br>
 					<input type="submit" value="Valider">
 				</form>
+				<script>
+					function handleFileSelect() {
+  						const fileInput = document.getElementById('file-input');
+  						const uploadedImage = document.getElementById('uploaded-image');
+						const label = document.querySelector('label[for="file-input"]');
+
+  						fileInput.onchange = function(event) {
+      						const file = event.target.files[0];
+      						const reader = new FileReader();
+
+      					reader.onload = function() {
+          					uploadedImage.src = reader.result;
+							label.classList.add('image-selected'); // Add the class when an image is uploaded
+      					}
+
+      					if (file) {
+          					reader.readAsDataURL(file);
+      					}
+  					};
+				}
+				</script>
 			</div>
 		</div>
 	</div>

@@ -47,7 +47,6 @@ function showProjects(dataProjects) {
   // Delete all gallery projects button
   const galleryDeleteBtn = document.querySelector('.gallery-delete-btn');
   galleryDeleteBtn.addEventListener('click', async () => {
-    event.stopPropagation(); // pour empêcher la fermeture de la modale après la suppression d'un projet
     try {
       await deleteAllProject();
       showProjects([]); // show empty gallery after delete

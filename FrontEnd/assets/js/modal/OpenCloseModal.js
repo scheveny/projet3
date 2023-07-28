@@ -1,39 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     let editProjectLink = document.querySelector('#edit-project-modal');
-    let editProjectModal = document.querySelector('.project-modal');
-    let closeModalButton = document.querySelector('.close-btn')
+    let closeModalButtons = document.querySelectorAll('.close-btn');
+    let editProjectModals = document.querySelectorAll('.modal-wdws');
 
-    function OpenModal(event) {
+    function openModal(event) {
         event.preventDefault();
-        editProjectModal.style.display = 'flex';
-        console.log('Fenêtre modale ouverte !');
+        editProjectModals.forEach((modal) => {
+            modal.style.display = 'flex';
+        });
+        console.log('Fenêtres modales ouvertes !');
     };
 
-    function closeModal (event) {
+    function closeModal(event) {
         event.preventDefault();
-        editProjectModal.style.display = 'none';
+        const modalToClose = event.target.closest('.modal-wdws');
+        modalToClose.style.display = 'none';
         console.log('Fenêtre modale fermée !');
     };
-    
+
     editProjectLink.addEventListener("click", (event) => {
-        OpenModal(event);
+        openModal(event);
     });
 
-    closeModalButton.addEventListener('click', (event) => {
-        closeModal(event);
+    closeModalButtons.forEach(function (button) {
+        button.addEventListener('click', closeModal);
     });
 
     window.addEventListener('click', (event) => {
-        if (event.target === editProjectModal) {
-          closeModal(event);
-          console.log('Fenêtre modale fermée en cliquant en dehors !');
+        if (event.target.classList.contains('modal-wdws')) {
+            closeModal(event);
+            console.log('Fenêtre modale fermée en cliquant en dehors !');
         }
     });
 
     window.addEventListener('keydown', function (event) {
         if (event.key === "Escape" || event.key === "Esc") {
-            closeModal(event)
+            closeModal(event);
         }
-    })
-})
+    });
+});
