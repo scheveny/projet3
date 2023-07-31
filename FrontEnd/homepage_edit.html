@@ -35,8 +35,8 @@
 			<div class="modal-pjct-add-form">
 				<h2 class="mwdw-title">Ajout photo</h2>
 				<form action="#" method="post" id="upload-form">
-					<label for="file-input" onclick="handleFileSelect()">
-						<img src="" alt="" id="uploaded-image">
+					<label for="file-input">
+						<img src="" alt="" id="uploaded-image" style="display: none;">
 						<img src="assets/icons/picture-svgrepo-com 1.png" alt="">
 						<span id="add-photo-btn">+ Ajouter photo</span>
 						<span id="input-comments">jpg, png : 4mo max</span>
@@ -52,27 +52,6 @@
 					</select><br><br>
 					<input type="submit" value="Valider">
 				</form>
-				<script>
-					function handleFileSelect() {
-  						const fileInput = document.getElementById('file-input');
-  						const uploadedImage = document.getElementById('uploaded-image');
-						const label = document.querySelector('label[for="file-input"]');
-
-  						fileInput.onchange = function(event) {
-      						const file = event.target.files[0];
-      						const reader = new FileReader();
-
-      					reader.onload = function() {
-          					uploadedImage.src = reader.result;
-							label.classList.add('image-selected'); // Add the class when an image is uploaded
-      					}
-
-      					if (file) {
-          					reader.readAsDataURL(file);
-      					}
-  					};
-				}
-				</script>
 			</div>
 		</div>
 	</div>
@@ -82,7 +61,7 @@
 		<ul>
 			<li><a href="#ancre-projets">projets</a></li>
 			<li><a href="#ancre-contact">contact</a></li>
-			<li><a href="login_page.html">login</a></li>
+			<li><a href="login_page.html">logout</a></li>
 			<li><img src="assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>

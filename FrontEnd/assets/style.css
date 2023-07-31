@@ -486,6 +486,8 @@ label[for="file-input"] {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	position: relative;
+    overflow: hidden;
 }
 
 label img {
@@ -494,9 +496,11 @@ label img {
 	margin-bottom: 15px;
 }
 
-.image-selected #uploaded-image {
-
-	object-fit: cover;
+#uploaded-image {
+	position: absolute;
+    z-index: 1;
+	height: 193px;
+	width: 129px;
 }
 
 #add-photo-btn {

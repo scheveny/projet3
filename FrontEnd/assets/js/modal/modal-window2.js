@@ -10,8 +10,28 @@ let backBtn = document.querySelector('.back-btn');
 
   // Showing img after selecting it in file-input
 
-
-
+  document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('file-input');
+    const uploadedImage = document.getElementById('uploaded-image');
+    const label = document.querySelector('label[for="file-input"]');
+    const addBtn = document.getElementById('add-photo-btn');
+  
+    fileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function() {
+        uploadedImage.src = reader.result;
+        uploadedImage.style.display = 'flex'; // Display the uploaded image
+        addBtn.style.display = 'none'; // Hide the 'Add photo' span
+      }
+  
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+  });
+  
   // Upload form
 
 let uploadForm = document.getElementById('upload-form');
