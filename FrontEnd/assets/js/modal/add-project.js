@@ -78,7 +78,8 @@ uploadForm.addEventListener('click', async () => {
     let data = await response.json(); // Supposons que le serveur renvoie une réponse JSON
     console.log('Réponse du serveur :', data);
 
-    await refreshGallery();
+    let event = new CustomEvent('projectAdded', { detail: data });
+    document.dispatchEvent(event);
 
   } catch (error) {
     // Gérez les erreurs éventuelles de la requête
@@ -86,24 +87,13 @@ uploadForm.addEventListener('click', async () => {
   }
 });
 
-async function refreshGallery() {
-  try {
-    let galleryResponse = await fetch('http://localhost:5678/api/works', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${authToken}`,
-      },
-    });
-    let galleryData = await galleryResponse.json();
+document.addEventListener('projectAdded', function(event) {
+  let data = event.detail;
+  let gallery = document.querySelector('.gallery');
+  let newProject = createModalProject(data);
+  gallery.appendChild(newProject);
+});
 
-    galleryData.forEach(galleryData => {
-      let newProject = createModalProject(galleryData);
-      gallery.appendChild(newProject);
-    });
-  } catch (error) {
-    console.error('Erreur lors de la récupération de la liste des projets :', error);
-  }
-};
 
 function createModalProject(project) {
   let galleryProject = document.createElement('figure');
@@ -128,4 +118,6 @@ function createModalProject(project) {
   deleteIcon.style.right = '5px';
   deleteIcon.style.width = '17px';
   deleteIcon.style.height = '17px';
+
+  return galleryProject;
 }

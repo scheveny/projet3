@@ -1,6 +1,5 @@
 import { fetchProjects } from './fetch.js'
 
-
 let galleryData = await fetchProjects();
 
 // Afficher tous les projets au chargement initial
