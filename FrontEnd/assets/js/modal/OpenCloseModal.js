@@ -14,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal(event) {
         event.preventDefault();
-        const modalToClose = event.target.closest('.modal-wdws');
+        let modalToClose = event.target.closest('.modal-wdws');
         modalToClose.style.display = 'none';
-        console.log('Fenêtre modale fermée !');
     };
 
     editProjectLink.addEventListener("click", (event) => {

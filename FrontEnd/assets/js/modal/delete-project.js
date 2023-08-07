@@ -36,7 +36,7 @@ function showProjects(galleryData) {
     deleteIcon.addEventListener('click', async () => {
       try {
         await deleteProject(project.id);
-        const updatedProjects = await fetchProjects(); // Récupère les projets mis à jour après la suppression
+        let updatedProjects = await fetchProjects(); // Récupère les projets mis à jour après la suppression
         showProjects(updatedProjects);
       } catch (error) {
         console.error('Erreur dans la suppression du projet individuel :', error);
@@ -109,7 +109,7 @@ async function deleteAllProject() {
 showProjects(galleryData);
 
 
-// Pathway between modal wdw1 and wdw2
+// Pathway between delete-project wdw1 and add-project wdw2
 
 let btn = document.querySelector('.pjct-add-btn');
 

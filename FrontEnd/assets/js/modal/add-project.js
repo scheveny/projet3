@@ -35,7 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Upload form
 
+// Close the modal after submission
+function closeModal() {
+  const modal = document.querySelector('.project-modal');
+  modal.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  
 let uploadForm = document.getElementById('submit-project');
+let gallery = document.querySelector('.gallery');
 const authToken = sessionStorage.getItem('authToken');
 
 uploadForm.addEventListener('click', async () => {
@@ -62,7 +71,6 @@ uploadForm.addEventListener('click', async () => {
 
   try {
     // Envoyez les données au serveur en utilisant 'fetch'
-   console.log('before fetch');
     let response = await fetch('http://localhost:5678/api/works', {
       method: 'POST',
       body: formData, // Utilisez le FormData comme corps de la requête
@@ -70,7 +78,6 @@ uploadForm.addEventListener('click', async () => {
         'Authorization': `Bearer ${authToken}`,
       },
     });
-    console.log(response);
     if (!response.ok) {
       throw new Error('Erreur lors de l\'envoi des données.');
     }
@@ -81,6 +88,8 @@ uploadForm.addEventListener('click', async () => {
     let event = new CustomEvent('projectAdded', { detail: data });
     document.dispatchEvent(event);
 
+    closeModal();
+
   } catch (error) {
     // Gérez les erreurs éventuelles de la requête
     console.error('Erreur lors de l\'envoi des données :', error);
@@ -89,7 +98,6 @@ uploadForm.addEventListener('click', async () => {
 
 document.addEventListener('projectAdded', function(event) {
   let data = event.detail;
-  let gallery = document.querySelector('.gallery');
   let newProject = createModalProject(data);
   gallery.appendChild(newProject);
 });
@@ -97,27 +105,16 @@ document.addEventListener('projectAdded', function(event) {
 
 function createModalProject(project) {
   let galleryProject = document.createElement('figure');
-  let imageContainer = document.createElement('div');
   let imageProject = document.createElement('img');
   let titleProject = document.createElement('figcaption');
-  let deleteIcon = document.createElement('img'); 
 
   imageProject.src = project.imageUrl;
-  titleProject.innerText = 'éditer';
-  deleteIcon.src = 'assets/icons/delete-icon.png'; 
+  titleProject.textContent = project.title;
 
   gallery.appendChild(galleryProject);
-  galleryProject.appendChild(imageContainer);
-  imageContainer.appendChild(imageProject);
-  imageContainer.appendChild(deleteIcon);
+  galleryProject.appendChild(imageProject);
   galleryProject.appendChild(titleProject);
-
-  imageContainer.style.position = 'relative';
-  deleteIcon.style.position = 'absolute';
-  deleteIcon.style.top = '5px';
-  deleteIcon.style.right = '5px';
-  deleteIcon.style.width = '17px';
-  deleteIcon.style.height = '17px';
 
   return galleryProject;
 }
+})
