@@ -1,13 +1,13 @@
 import { fetchProjects } from '../fetch.js';
 
-let dataProjects = await fetchProjects();
+let galleryData = await fetchProjects();
 
-function showProjects(dataProjects) {
+function showProjects(galleryData) {
   let gallery = document.querySelector('.modal-gallery');
   gallery.innerHTML = '';
 
-  for (let i = 0; i < dataProjects.length; i++) {
-    let project = dataProjects[i];
+  for (let i = 0; i < galleryData.length; i++) {
+    let project = galleryData[i];
 
     let galleryProject = document.createElement('figure');
     let imageContainer = document.createElement('div');
@@ -106,7 +106,7 @@ async function deleteAllProject() {
   }
 }
 
-showProjects(dataProjects);
+showProjects(galleryData);
 
 
 // Pathway between modal wdw1 and wdw2

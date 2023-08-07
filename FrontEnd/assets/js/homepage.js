@@ -1,17 +1,17 @@
 import { fetchProjects } from './fetch.js'
 
 
-let dataProjects = await fetchProjects();
+let galleryData = await fetchProjects();
 
 // Afficher tous les projets au chargement initial
-showProjects(dataProjects);
+showProjects(galleryData);
 
-function showProjects(dataProjects) {
+function showProjects(galleryData) {
   let gallery = document.querySelector('.gallery');
   gallery.innerHTML = '';
 
-  for (let i = 0; i < dataProjects.length; i++) {
-    let project = dataProjects[i];
+  for (let i = 0; i < galleryData.length; i++) {
+    let project = galleryData[i];
 
     let galleryProject = document.createElement('figure');
     let imageProject = document.createElement('img');
@@ -28,9 +28,9 @@ function showProjects(dataProjects) {
 
 function filterProjects(category) {
   if (category === 'all') {
-    return dataProjects;
+    return galleryData;
   } else {
-    return dataProjects.filter(project => project.category.id === parseInt(category));
+    return galleryData.filter(project => project.category.id === parseInt(category));
   }
 }
 

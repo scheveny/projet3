@@ -11,8 +11,8 @@
 	<link rel="stylesheet" href="assets/style.css">
 	<script type="module" src="assets/js/homepage.js" defer></script>
 	<script src="assets/js/modal/OpenCloseModal.js"></script>
-	<script type="module" src="assets/js/modal/modal-window1.js"></script>
-	<script type="module" src="assets/js/modal/modal-window2.js"></script>
+	<script type="module" src="assets/js/modal/add-project.js"></script>
+	<script type="module" src="assets/js/modal/delete-project.js"></script>
 </head>
 <body>
 	<div class="edit-banner">
@@ -46,11 +46,11 @@
 					<input type="text" id="title" name="title">		
 					<label for="Catégorie">Catégorie</label>
 					<select id="categoryId" name="category">
-						<option value="Objets" data-category-id="1">Objets</option>
-						<option value="Appartements" data-category-id="2">Appartements</option>
-						<option value="Hôtels & restaurants" data-category-id="3">Hôtels & restaurants</option>
+						<option value="1">Objets</option>
+						<option value="2">Appartements</option>
+						<option value="3">Hôtels & restaurants</option>
 					</select><br><br>
-					<input type="submit" value="Valider">
+					<button type="button" id="submit-project">Valider</button>
 				</form>
 			</div>
 		</div>
