@@ -14,7 +14,7 @@ backBtn.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', function() {
   let fileInput = document.getElementById('file-input');
-  let uploadedImage = document.getElementById('uploaded-image');
+  let uploadedImage = document.getElementById('uploadedImage');
   let addBtn = document.getElementById('add-photo-btn');
 
   fileInput.addEventListener('change', function(event) {
@@ -91,7 +91,6 @@ uploadForm.addEventListener('click', async () => {
     closeModal();
 
   } catch (error) {
-    // Gérez les erreurs éventuelles de la requête
     console.error('Erreur lors de l\'envoi des données :', error);
   }
 });
@@ -127,4 +126,4 @@ let uploadLimit = document.querySelector("#uploadedImage");
             alert("Fichier trop volumineux");
             uploadedImage.value = "";
         }
-    }
+    };

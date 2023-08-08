@@ -13,6 +13,7 @@ function showProjects(galleryData) {
     let project = galleryData[i];
 
     let galleryProject = document.createElement('figure');
+    galleryProject.classList.add('project-gallery-' + project.id);
     let imageProject = document.createElement('img');
     let titleProject = document.createElement('figcaption');
 

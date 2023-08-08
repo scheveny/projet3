@@ -33,14 +33,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Pathway between delete-project wdw1 and add-project wdw2
-
-let btn = document.querySelector('.pjct-add-btn');
-
-btn.addEventListener('click', () => {
-  let modal1 = document.querySelector('.modal-wdw1');
-  let modal2 = document.querySelector('.modal-wdw2');
-
-  modal1.style.display = 'none';
-  modal2.style.display = 'block';
-});

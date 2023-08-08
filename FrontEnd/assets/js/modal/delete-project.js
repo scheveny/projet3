@@ -2,14 +2,15 @@ import { fetchProjects } from '../fetch.js';
 
 let galleryData = await fetchProjects();
 
-function showProjects(galleryData) {
-  let gallery = document.querySelector('.modal-gallery');
-  gallery.innerHTML = '';
+function showModalProjects(galleryData) {
+  let modalGallery = document.querySelector('.modal-gallery');
+  modalGallery.innerHTML = '';
 
   for (let i = 0; i < galleryData.length; i++) {
     let project = galleryData[i];
 
     let galleryProject = document.createElement('figure');
+    galleryProject.classList.add('project-gallery-'+ project.id);
     let imageContainer = document.createElement('div');
     let imageProject = document.createElement('img');
     let titleProject = document.createElement('figcaption');
@@ -19,7 +20,7 @@ function showProjects(galleryData) {
     titleProject.innerText = 'éditer';
     deleteIcon.src = 'assets/icons/delete-icon.png'; 
 
-    gallery.appendChild(galleryProject);
+    modalGallery.appendChild(galleryProject);
     galleryProject.appendChild(imageContainer);
     imageContainer.appendChild(imageProject);
     imageContainer.appendChild(deleteIcon);
@@ -36,12 +37,8 @@ function showProjects(galleryData) {
     deleteIcon.addEventListener('click', async () => {
       try {
         await deleteProject(project.id);
-        // Remove the deleted project's DOM element
-        gallery.removeChild(galleryProject);
-
-        // Fetch the updated projects and populate the gallery
-        let updatedProjects = await fetchProjects();
-        showProjects(updatedProjects);
+        let updatedProjects = await fetchProjects(); // Récupère les projets mis à jour après la suppression
+        showModalProjects(updatedProjects);
       } catch (error) {
         console.error('Erreur dans la suppression du projet individuel :', error);
       }
@@ -52,13 +49,10 @@ function showProjects(galleryData) {
     const galleryDeleteBtn = document.querySelector('.gallery-delete-btn');
     galleryDeleteBtn.addEventListener('click', async () => {
       try {
+
         await deleteAllProject();
         // Empty the gallery container
-        gallery.innerHTML = '';
-        
-        // Fetch the updated projects and populate the gallery
-        let updatedProjects = await fetchProjects();
-        showProjects(updatedProjects);
+        modalGallery.innerHTML = '';
       } catch (error) {
         console.error('Une erreur est survenue lors de la suppression des projets :', error);
       }
@@ -79,6 +73,11 @@ async function deleteProject(projectId) {
       console.error('Erreur dans la suppression du projet individuel:', response);
       throw new Error('Réponse réseau erronée');
     }
+    let classToDelete = '.project-gallery-' + projectId;
+    let elementToDelete = document.querySelectorAll(classToDelete);
+    elementToDelete.forEach(element => {
+      element.remove();
+    })
 
     console.log('Projet supprimé avec succès.');
 
@@ -107,6 +106,11 @@ async function deleteAllProject() {
     // Attendre que toutes les requêtes de suppression soient terminées
     await Promise.all(deleteRequests);
 
+    let elementToDelete = document.querySelectorAll('figure');
+    elementToDelete.forEach(element => {
+      element.remove();
+    })
+
     console.log('Tous les projets ont été supprimés avec succès.');
 
   } catch (error) {
@@ -115,4 +119,17 @@ async function deleteAllProject() {
   }
 }
 
-showProjects(galleryData);
+showModalProjects(galleryData);
+
+
+// Pathway between delete-project wdw1 and add-project wdw2
+
+let btn = document.querySelector('.pjct-add-btn');
+
+btn.addEventListener('click', () => {
+  let modal1 = document.querySelector('.modal-wdw1');
+  let modal2 = document.querySelector('.modal-wdw2');
+
+  modal1.style.display = 'none';
+  modal2.style.display = 'block';
+});
