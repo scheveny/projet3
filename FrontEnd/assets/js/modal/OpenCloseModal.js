@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
         editProjectModals.forEach((modal) => {
             modal.style.display = 'flex';
         });
-        console.log('Fenêtres modales ouvertes !');
     };
 
     function closeModal(event) {
         event.preventDefault();
         let modalToClose = event.target.closest('.modal-wdws');
-        modalToClose.style.display = 'none';
+            modalToClose.style.display = 'none';
+
     };
 
     editProjectLink.addEventListener("click", (event) => {
@@ -29,13 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (event) => {
         if (event.target.classList.contains('modal-wdws')) {
             closeModal(event);
-            console.log('Fenêtre modale fermée en cliquant en dehors !');
         }
     });
+});
 
-    window.addEventListener('keydown', function (event) {
-        if (event.key === "Escape" || event.key === "Esc") {
-            closeModal(event);
-        }
-    });
+// Pathway between delete-project wdw1 and add-project wdw2
+
+let btn = document.querySelector('.pjct-add-btn');
+
+btn.addEventListener('click', () => {
+  let modal1 = document.querySelector('.modal-wdw1');
+  let modal2 = document.querySelector('.modal-wdw2');
+
+  modal1.style.display = 'none';
+  modal2.style.display = 'block';
 });

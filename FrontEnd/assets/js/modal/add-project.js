@@ -13,13 +13,13 @@ backBtn.addEventListener('click', () => {
 // Showing img after selecting it in file-input
 
 document.addEventListener('DOMContentLoaded', function() {
-  const fileInput = document.getElementById('file-input');
-  const uploadedImage = document.getElementById('uploaded-image');
-  const addBtn = document.getElementById('add-photo-btn');
+  let fileInput = document.getElementById('file-input');
+  let uploadedImage = document.getElementById('uploaded-image');
+  let addBtn = document.getElementById('add-photo-btn');
 
   fileInput.addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+    let file = event.target.files[0];
+    let reader = new FileReader();
 
     reader.onload = function() {
       uploadedImage.src = reader.result;
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Close the modal after submission
 function closeModal() {
-  const modal = document.querySelector('.project-modal');
+  let modal = document.querySelector('.project-modal');
   modal.style.display = 'none';
 }
 
@@ -117,4 +117,14 @@ function createModalProject(project) {
 
   return galleryProject;
 }
-})
+});
+
+// Check size of the upload image
+
+let uploadLimit = document.querySelector("#uploadedImage");
+    uploadLimit.onchange = function (){
+        if(uploadedImage.files[0].size > 4194304) {
+            alert("Fichier trop volumineux");
+            uploadedImage.value = "";
+        }
+    }

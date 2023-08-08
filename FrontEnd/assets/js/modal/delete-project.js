@@ -36,7 +36,11 @@ function showProjects(galleryData) {
     deleteIcon.addEventListener('click', async () => {
       try {
         await deleteProject(project.id);
-        let updatedProjects = await fetchProjects(); // Récupère les projets mis à jour après la suppression
+        // Remove the deleted project's DOM element
+        gallery.removeChild(galleryProject);
+
+        // Fetch the updated projects and populate the gallery
+        let updatedProjects = await fetchProjects();
         showProjects(updatedProjects);
       } catch (error) {
         console.error('Erreur dans la suppression du projet individuel :', error);
@@ -44,16 +48,21 @@ function showProjects(galleryData) {
     });
   }
 
-  // Delete all gallery projects button
-  const galleryDeleteBtn = document.querySelector('.gallery-delete-btn');
-  galleryDeleteBtn.addEventListener('click', async () => {
-    try {
-      await deleteAllProject();
-      showProjects([]); // show empty gallery after delete
-    } catch (error) {
-      console.error('Une erreur est survenue lors de la suppression des projets :', error);
-    }
-  });
+    // Delete all gallery projects button
+    const galleryDeleteBtn = document.querySelector('.gallery-delete-btn');
+    galleryDeleteBtn.addEventListener('click', async () => {
+      try {
+        await deleteAllProject();
+        // Empty the gallery container
+        gallery.innerHTML = '';
+        
+        // Fetch the updated projects and populate the gallery
+        let updatedProjects = await fetchProjects();
+        showProjects(updatedProjects);
+      } catch (error) {
+        console.error('Une erreur est survenue lors de la suppression des projets :', error);
+      }
+    });
 }
 
 async function deleteProject(projectId) {
@@ -83,7 +92,7 @@ async function deleteProject(projectId) {
 async function deleteAllProject() {
   const authToken = sessionStorage.getItem('authToken');
   try {
-    const allProjects = await fetchProjects(); // Supposons que vous ayez une fonction fetchProjects() pour récupérer tous les projets.
+    const allProjects = await fetchProjects();
 
     // Supprimer chaque projet individuellement en utilisant son ID
     const deleteRequests = allProjects.map((project) => {
@@ -107,16 +116,3 @@ async function deleteAllProject() {
 }
 
 showProjects(galleryData);
-
-
-// Pathway between delete-project wdw1 and add-project wdw2
-
-let btn = document.querySelector('.pjct-add-btn');
-
-btn.addEventListener('click', () => {
-  let modal1 = document.querySelector('.modal-wdw1');
-  let modal2 = document.querySelector('.modal-wdw2');
-
-  modal1.style.display = 'none';
-  modal2.style.display = 'block';
-});

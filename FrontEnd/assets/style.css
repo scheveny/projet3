@@ -496,7 +496,7 @@ label img {
 	margin-bottom: 15px;
 }
 
-#uploaded-image {
+#uploadedImage {
 	position: absolute;
     z-index: 1;
 	height: 193px;
