@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
             console.log('Projet supprimé avec succès.');
 
-            // Mise à jour de la galerie après la suppression
+            // Update modal gallery after deleting a project
             let updatedProjects = await fetchProjects();
             removeAllDeleteListeners();
             showModalProjects(updatedProjects);
@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Supprimer chaque projet individuellement en utilisant son ID
             const deleteRequests = allProjects.map((project) => {
-            return fetch(`http://localhost:5678/api/works/${project.id}`, {
-                method: 'DELETE',
-                headers: {
-                'Authorization': `Bearer ${authToken}`,
-                },
-            });
+                return fetch(`http://localhost:5678/api/works/${project.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    },
+                });
             });
 
             // Attendre que toutes les requêtes de suppression soient terminées
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             let elementToDelete = document.querySelectorAll('figure');
             elementToDelete.forEach(element => {
-            element.remove();
+                element.remove();
             })
 
             // Suppression réussie, mettre à jour la galerie
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const newIcon = icon.cloneNode(true);
             icon.parentNode.replaceChild(newIcon, icon);
         });
-    }
+    };
 
     function addDeleteListener(deleteIcon, projectId) {
         deleteIcon.addEventListener('click', async () => {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.error('Erreur dans la suppression du projet individuel :', error);
             }
         });
-    }
+    };
 
     function showModalProjects(galleryData) {
         modalGallery.innerHTML = '';
@@ -137,13 +137,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.error('Une erreur est survenue lors de la suppression des projets :', error);
             }
         });
-    }
+    };
 
     function closeModal(event) {
         event.preventDefault();
         let modalToClose = event.target.closest('.modal-wdws');
         modalToClose.style.display = 'none';
-    }
+    };
 
     function openModal(event) {
         event.preventDefault();
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         .catch(error => {
             console.error('Erreur lors de la récupération des données :', error);
         });
-    }
+    };
 
     editProjectLink.addEventListener("click", openModal);
 
@@ -173,23 +173,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Back button function
 
-        let backBtn = document.querySelector('.back-btn');
+    let backBtn = document.querySelector('.back-btn');
 
-        backBtn.addEventListener('click', async () => {
-            let modal1 = document.querySelector('.modal-wdw1');
-            let modal2 = document.querySelector('.modal-wdw2');
+    backBtn.addEventListener('click', async () => {
+        let modal1 = document.querySelector('.modal-wdw1');
+        let modal2 = document.querySelector('.modal-wdw2');
 
-            modal1.style.display = 'flex';
-            modal2.style.display = 'none';
+        modal1.style.display = 'flex';
+        modal2.style.display = 'none';
 
-            try {
-                let updatedProjects = await fetchProjects();
-                modalGallery.innerHTML = '';
-                showModalProjects(updatedProjects);
-            } catch (error) {
-                console.error('Erreur lors de la récupération des données :', error);
-            }
-        });
+        // Update projects list in modal gallery after adding a project
+        try {
+            let updatedProjects = await fetchProjects();
+            modalGallery.innerHTML = '';
+            showModalProjects(updatedProjects);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des données :', error);
+        }
+    });
 });
 
 // Pathway between delete-project wdw1 and add-project wdw2

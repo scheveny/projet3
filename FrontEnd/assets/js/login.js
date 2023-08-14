@@ -3,7 +3,7 @@ let loginForm = document.getElementById('login-form');
 loginForm.addEventListener('submit', async function(event) {
     event.preventDefault(); // Empêche le rechargement de la page après la soumission du formulaire
 
-    // Récupération des valeurs des champs d'entrée
+    // Récupération des valeurs saisies des champs d'entrée
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
 
